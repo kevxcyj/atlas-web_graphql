@@ -1,11 +1,11 @@
 const express = require('express');
 const { graphqlHTTP } = require('express-graphql');
-const TaskType = require('./schema');
+const { GraphQLSchema } = require('./schema');
 
 const app = express();
 
 app.use('/graphql', graphqlHTTP({
-  schema: TaskType,
+  schema: GraphQLSchema,
   graphiql: true,
 }));
 
