@@ -1,0 +1,9 @@
+mutation {
+     addTask(projectId: "project-id-from-previous-query", title: "New Task", weight: 3, description: "Description for new task") {
+       id
+       projectId
+       title
+       weight
+       description
+     }
+   }
