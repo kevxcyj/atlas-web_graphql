@@ -1,6 +1,6 @@
-import { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLInt, GraphQLList } from 'graphql';
+import { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLInt, GraphQLList, GraphQLNonNull } from 'graphql';
 import { GraphQLSchema } from 'graphql';
-import lodash from 'lodash';
+import _ from 'lodash';
 
 import Task from "../models/task.js";
 import Project from "../models/project.js";
@@ -87,9 +87,9 @@ const Mutation = new GraphQLObjectType({
     addProject: {
       type: ProjectType,
       args: {
-        title: { type: GraphQLNonNull(GraphQLString) },
-        weight: { type: GraphQLNonNull(GraphQLInt) },
-        description: { type: GraphQLNonNull(GraphQLString) },
+        title: { type: new GraphQLNonNull(GraphQLString) },
+        weight: { type: new GraphQLNonNull(GraphQLInt) },
+        description: { type: new GraphQLNonNull(GraphQLString) },
       },
       resolve(_, args) {
         const project = new Project({
@@ -106,4 +106,5 @@ const Mutation = new GraphQLObjectType({
 
 export const schema = new GraphQLSchema({
   query: RootQueryType,
+  mutation: Mutation,
 });
